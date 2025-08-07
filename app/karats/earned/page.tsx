@@ -1,11 +1,11 @@
-import { mockTransactions } from "@/lib/data"
+import { karatsLedger } from "@/lib/data"
 import { KaratsLayout } from "@/components/karats-layout"
 import { KaratIcon } from "@/components/karat-icon"
 import { GlassmorphicCard } from "@/components/glassmorphic-card"
 import { CardContent } from "@/components/ui/card"
 
 export default function KaratsEarnedPage() {
-  const earnedTransactions = mockTransactions.filter((t) => t.type === "earned")
+  const earnedTransactions = karatsLedger.filter((t) => t.type === "earned")
 
   return (
     <KaratsLayout title="Karats Earned" activeTab="earned">
