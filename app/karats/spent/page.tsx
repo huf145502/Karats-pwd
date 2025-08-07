@@ -1,12 +1,16 @@
-import { mockTransactions } from "@/lib/data"
+import { karatsLedger } from "@/lib/data"
 import { KaratsLayout } from "@/components/karats-layout"
 import { GlassmorphicCard } from "@/components/glassmorphic-card"
 import { CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { KaratsLedgerItem } from "@/lib/types"
+import TopNav from "@/components/navbar"
 
 export default function KaratsSpentPage() {
-  const spentTransactions = mockTransactions.filter((t) => t.type === "spent")
+  const spentTransactions = karatsLedger.filter(
+    (t: KaratsLedgerItem) => t.type === "claimed"
+  )
 
   return (
     <KaratsLayout title="Karats Spent" activeTab="spent">
@@ -25,7 +29,7 @@ export default function KaratsSpentPage() {
       ) : (
         /* Transactions List */
         <div className="space-y-3">
-          {spentTransactions.map((transaction) => (
+          {spentTransactions.map((transaction: KaratsLedgerItem) => (
             <GlassmorphicCard key={transaction.id} gradient="from-white/50 to-white/30">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
@@ -39,12 +43,12 @@ export default function KaratsSpentPage() {
                           hour12: true,
                         })
                         .replace(",", ", ")}{" "}
-                      • {transaction.location}
+                      • {transaction.brand}
                     </p>
                     <p className="text-sm text-gray-600">{transaction.description}</p>
                   </div>
                   <div className="text-right">
-                    <span className="text-lg font-bold text-red-600">-{transaction.amount}</span>
+                    <span className="text-lg font-bold text-red-600">{transaction.karats}</span>
                   </div>
                 </div>
               </CardContent>
