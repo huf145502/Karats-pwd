@@ -1,0 +1,4 @@
+---
+description: analyse package.json or similar dependency context before using import/ export
+alwaysApply: false
+---
